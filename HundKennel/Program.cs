@@ -41,6 +41,22 @@ class Program
                 raceResults(listOfDogs[0], listOfDogs[1], trackLenght).PrintInfo();
 
                
+            } else if(input == "3")
+            {
+                Console.WriteLine("how many dogs would you like to race?");
+                int raceNumberDogs = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("whitch dogs would you like to race? ( input number of the dog and press enter and repeat");
+                List<Dogs> racingDogs = new List<Dogs>();
+
+                for (int i = 0; i < raceNumberDogs; i++)
+                {
+                    int raceDog = Convert.ToInt32(Console.ReadLine());
+                    
+                   
+                    racingDogs.Add(listOfDogs[raceDog]);
+                }
+                
+                raceAllDogs(racingDogs, 100).PrintInfo();
             }
         }
 
@@ -152,19 +168,20 @@ class Program
         }
 
     }
-    /*
-    static Dogs raceAllDogs(List<Dogs> AllDogs)
+    
+    static Dogs raceAllDogs(List<Dogs> AllDogs, int trackLenght)
     {
         Dogs winningDog = AllDogs[0];
         for (int i = 1; i < AllDogs.Count; i++)
         {
-            if (AllDogs[i] < winningDog)
+            if (AllDogs[i].calculateLapTime(trackLenght) < winningDog.calculateLapTime(trackLenght))
             {
-                winningDog
+                winningDog = AllDogs[i];
             }
         }
+        return winningDog;
     }
-    */
+    
 }
     
     
